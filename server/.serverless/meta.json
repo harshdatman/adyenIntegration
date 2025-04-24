@@ -1,0 +1,98 @@
+{
+  "/Users/harsh/Documents/try again/server/serverless.yml": {
+    "versionFramework": "4.14.0",
+    "servicePath": "/Users/harsh/Documents/try again/server/serverless.yml",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "adyen-payment-service",
+      "plugins": [
+        "serverless-offline"
+      ],
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs20.x",
+        "stage": "dev",
+        "region": "us-east-1",
+        "environment": {
+          "ADYEN_API_KEY": "<REDACTED>"
+        }
+      },
+      "functions": {
+        "createPayment": {
+          "handler": "src/create-payment.handler",
+          "events": [
+            {
+              "http": {
+                "path": "/create-payment",
+                "method": "post"
+              }
+            }
+          ]
+        },
+        "createSession": {
+          "handler": "src/create-session.handler",
+          "events": [
+            {
+              "http": {
+                "path": "/create-session",
+                "method": "post",
+                "cors": true
+              }
+            }
+          ]
+        },
+        "submitPayment": {
+          "handler": "src/submit-payment.handler",
+          "events": [
+            {
+              "http": {
+                "path": "/submit-payment",
+                "method": "post"
+              }
+            }
+          ]
+        },
+        "paymentDetails": {
+          "handler": "src/payment-details.handler",
+          "events": [
+            {
+              "http": {
+                "path": "/payment-details",
+                "method": "post"
+              }
+            }
+          ]
+        },
+        "webhook": {
+          "handler": "src/webhook.handler",
+          "events": [
+            {
+              "http": {
+                "path": "/webhook",
+                "method": "post",
+                "cors": true
+              }
+            }
+          ]
+        }
+      }
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs20.x",
+      "stage": "dev",
+      "region": "us-east-1",
+      "environment": {
+        "ADYEN_API_KEY": "<REDACTED>"
+      }
+    },
+    "serviceRawFile": "# service: adyen-payment-service\n\n\n# plugins:\n#   - serverless-offline\n# #   - serverless-bundle\n\n# provider:\n#   name: aws\n#   runtime: nodejs20.x\n#   stage: dev\n#   region: us-east-1\n\n# functions:\n#   createPayment:\n#     handler: src/create-payment.handler\n#     events:\n#       - http:\n#           path: /create-payment\n#           method: post\n#   webhook:\n#     handler: src/webhook.handler\n#     events:\n#       - http:\n#           path: /webhook\n#           method: post\n#           cors: true\n\n# resources:\n#   Resources:\n#     PaymentTable:\n#       Type: AWS::DynamoDB::Table\n#       Properties:\n#         TableName: Payments\n#         AttributeDefinitions:\n#           - AttributeName: \"transactionId\"\n#             AttributeType: \"S\"\n#         KeySchema:\n#           - AttributeName: \"transactionId\"\n#             KeyType: \"HASH\"\n#         ProvisionedThroughput:\n#           ReadCapacityUnits: 5\n#           WriteCapacityUnits: 5\n\n\n\n\nservice: adyen-payment-service\n\nplugins:\n  - serverless-offline\n\nprovider:\n  name: aws\n  runtime: nodejs20.x\n  stage: dev\n  region: us-east-1\n  environment:\n    ADYEN_API_KEY: AQEhhmfuXNWTK0Qc+iSUk3A1pupZNdNLVX9b+/OqECHiZa+nEMFdWw2+5HzctViMSCJMYAc=-FcJnHAWUSzpm7p93WCMJdnU6LzIVnUbQjH8SqCJOJew=-i1idy)9&>sEpQxI75en\n\nfunctions:\n  createPayment:\n    handler: src/create-payment.handler\n    events:\n      - http:\n          path: /create-payment\n          method: post\n\n  createSession:\n    handler: src/create-session.handler\n    events:\n      - http:\n          path: /create-session\n          method: post\n          cors: true\n\n  submitPayment:\n    handler: src/submit-payment.handler\n    events:\n      - http:\n          path: /submit-payment\n          method: post\n\n  paymentDetails:\n    handler: src/payment-details.handler\n    events:\n      - http:\n          path: /payment-details\n          method: post\n\n  webhook:\n    handler: src/webhook.handler\n    events:\n      - http:\n          path: /webhook\n          method: post\n          cors: true\n",
+    "command": [],
+    "options": {},
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}

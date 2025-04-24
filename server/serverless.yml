@@ -1,0 +1,61 @@
+service: adyen-payment-service
+
+plugins:
+  - serverless-offline
+  # - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  stage: dev
+  region: us-east-1
+  environment:
+    ADYEN_API_KEY: AQEhhmfuXNWTK0Qc+iSUk3A1pupZNdNLVX9b+/OqECHiZa+nEMFdWw2+5HzctViMSCJMYAc=-FcJnHAWUSzpm7p93WCMJdnU6LzIVnUbQjH8SqCJOJew=-i1idy)9&>sEpQxI75en
+
+functions:
+  createPayment:
+    handler: src/create-payment.handler
+    events:
+      - http:
+          path: /create-payment
+          method: post
+
+  createSession:             #using this 
+    handler: src/getpaymentpagelink.handler
+    events:
+      - http:
+          path: /getpaymentpagelink
+          method: post
+          cors: true
+
+  submitPayment:
+    handler: src/submit-payment.handler
+    events:
+      - http:
+          path: /submit-payment
+          method: post
+
+  paymentDetails:                 
+    handler: src/payment-details.handler
+    events:
+      - http:
+          path: /payment-details
+          method: post
+
+  webhook:                     #using this
+    handler: src/webhook.handler
+    timeout: 30
+    events:
+      - http:
+          path: /webhook
+          method: post
+          cors: true
+
+  refundPayment:                 #using this
+    refundPayment:
+    handler: src/refund.handler
+    events:
+      - http:
+          path: /refund
+          method: post
+          cors: true

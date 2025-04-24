@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typeorm": "typeorm"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@adyen/api-library": "^26.1.0",
+    "@serverless/aws": "^0.0.24",
+    "ajv": "^8.17.1",
+    "axios": "^1.8.4",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.5.0",
+    "mysql2": "^3.14.0",
+    "querystring": "^0.2.1",
+    "serverless": "^4.13.0",
+    "typeorm": "^0.3.22",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^14.4.0"
+  }
+}
