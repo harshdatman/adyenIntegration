@@ -9,8 +9,6 @@ provider:
   runtime: nodejs20.x
   stage: dev
   region: us-east-1
-  environment:
-    ADYEN_API_KEY: AQEhhmfuXNWTK0Qc+iSUk3A1pupZNdNLVX9b+/OqECHiZa+nEMFdWw2+5HzctViMSCJMYAc=-FcJnHAWUSzpm7p93WCMJdnU6LzIVnUbQjH8SqCJOJew=-i1idy)9&>sEpQxI75en
 
 functions:
   createPayment:

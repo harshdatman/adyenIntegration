@@ -7,7 +7,7 @@ module.exports.handler = async (event) => {
 
     const response = await axios.post('https://checkout-test.adyen.com/v67/payments/details', details, {
       headers: {
-        'X-API-Key': "AQEhhmfuXNWTK0Qc+iSUk3A1pupZNdNLVX9b+/OqECHiZa+nEMFdWw2+5HzctViMSCJMYAc=-FcJnHAWUSzpm7p93WCMJdnU6LzIVnUbQjH8SqCJOJew=-i1idy)9&>sEpQxI75en",
+        'X-API-Key': process.env.ADYEN_API_KEY,
       },
     });
 

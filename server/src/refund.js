@@ -10,7 +10,7 @@ const { v4: uuidv4 } = require("uuid");
 module.exports.handler = async (event) => {
   try {
     const { orderId, refundAmount } = JSON.parse(event.body || "{}");
-
+    // console.log("00000",process.env.ADYEN_API_KEY)
     if (!orderId || !refundAmount) {
       return {
         statusCode: 400,

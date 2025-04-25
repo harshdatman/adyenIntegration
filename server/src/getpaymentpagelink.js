@@ -10,6 +10,7 @@ module.exports.handler = async (event) => {
 
     // Step 1: Generate a unique idempotency key
     const idempotencyKey = uuidv4();
+    // console.log("00000",process.env.ADYEN_API_KEY)
 
     // Step 2: Send request to Adyen API to create payment link
     const response = await axios.post(
@@ -24,7 +25,7 @@ module.exports.handler = async (event) => {
         headers: {
           "X-API-Key": process.env.ADYEN_API_KEY,
           "Content-Type": "application/json",
-          "Idempotency-Key": idempotencyKey, // Step 3: Attach idempotency key
+          "Idempotency-Key": idempotencyKey,
         },
       }
     );
