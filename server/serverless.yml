@@ -11,12 +11,6 @@ provider:
   region: us-east-1
 
 functions:
-  createPayment:
-    handler: src/create-payment.handler
-    events:
-      - http:
-          path: /create-payment
-          method: post
 
   createSession:             #using this 
     handler: src/getpaymentpagelink.handler
@@ -25,13 +19,6 @@ functions:
           path: /getpaymentpagelink
           method: post
           cors: true
-
-  submitPayment:
-    handler: src/submit-payment.handler
-    events:
-      - http:
-          path: /submit-payment
-          method: post
 
   paymentDetails:                 
     handler: src/payment-details.handler

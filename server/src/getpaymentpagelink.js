@@ -8,17 +8,14 @@ module.exports.handler = async (event) => {
   try {
     const { amount } = JSON.parse(event.body);
 
-    // Step 1: Generate a unique idempotency key
     const idempotencyKey = uuidv4();
-    // console.log("00000",process.env.ADYEN_API_KEY)
 
-    // Step 2: Send request to Adyen API to create payment link
     const response = await axios.post(
       "https://checkout-test.adyen.com/v70/paymentLinks",
       {
         amount: { value: amount*100, currency: "GBP" },
         reference: `ORDER-${Date.now()}`,
-        returnUrl: "https://your-domain.com/", // Replace with actual return URL
+        returnUrl: "https://your-domain.com/",
         merchantAccount: "DatmanECOM",
       },
       {
@@ -33,14 +30,14 @@ module.exports.handler = async (event) => {
     const data = response.data;
     console.log("data is--->", data);
 
-    // Step 4: Initialize DB if not already initialized
+  
     if (!AppDataSource.isInitialized) {
       await AppDataSource.initialize();
     }
 
     const paymentRepo = AppDataSource.getRepository(Payment);
 
-    // Step 5: Save payment info to the database, including idempotency key
+  
     const payment = {
       transactionId: uuidv4(),
       paymentLinkId: data.id,
@@ -48,7 +45,7 @@ module.exports.handler = async (event) => {
       amount: amount,
       currency: "GBP",
       status: "Pending",
-      idempotencyKey, // 💡 Save it here
+      idempotencyKey, 
       createdAt: new Date(),
       updatedAt: new Date(),
     };

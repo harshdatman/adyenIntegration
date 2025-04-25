@@ -70,14 +70,12 @@ const { DataSource } = require("typeorm");
 const { Payment } = require("../entity/paymentSchema");
 const { Refund } = require("../entity/refundSchema");
 
-// Database configuration
-const DB_HOST = "localhost"; // Use IP to force TCP instead of UNIX socket
+const DB_HOST = "localhost"; 
 const DB_USER = "root";
 const DB_PASS = "12345678";
 const DB_NAME = "datman";
 const DB_PORT = 3306;
 
-// Ensure the database exists
 async function ensureDatabaseExists() {
   try {
     console.log("📡 Connecting to MySQL server...");
@@ -94,12 +92,11 @@ async function ensureDatabaseExists() {
 
     await connection.end();
   } catch (error) {
-    console.error("❌ Error while creating the database:", error);
+    console.error("Error while creating the database:", error);
     throw error;
   }
 }
 
-// Define the TypeORM Data Source
 const AppDataSource = new DataSource({
   type: "mysql",
   host: DB_HOST,
@@ -107,15 +104,14 @@ const AppDataSource = new DataSource({
   username: DB_USER,
   password: DB_PASS,
   database: DB_NAME,
-  synchronize: true, // Only for dev; disable in production
+  synchronize: true,
   logging: false,
   entities: [Payment, Refund],
   extra: {
-    socketPath: "/tmp/mysql.sock", // ✅ Use your confirmed socket path
+    socketPath: "/tmp/mysql.sock", 
   },
 });
 
-// Initialize the database
 async function initializeDatabase() {
   try {
     await ensureDatabaseExists();
@@ -126,11 +122,10 @@ async function initializeDatabase() {
     }
   } catch (err) {
     console.error("❌ TypeORM Data Source initialization failed:", err);
-    process.exit(1); // Optional: exit on failure
+    process.exit(1); 
   }
 }
 
-// Start initialization
 initializeDatabase();
 
 module.exports = { AppDataSource };
